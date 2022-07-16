@@ -6,9 +6,11 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { UserContext } from "./context/UserContext";
 import Admin from "./pages/Admin";
 import Analytics from "./pages/Analytics";
+import BlogDetails from "./pages/BlogsPage/BlogDetails";
+import Blogs from "./pages/BlogsPage/Blogs";
+import UpdateBlog from "./pages/BlogsPage/UpdateBlog";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
-import Landing from "./pages/Landing";
 import NotFound from "./pages/NotFound";
 
 const client = new QueryClient();
@@ -20,7 +22,9 @@ const App = () => {
       <Router>
         <Navigation user={user} />
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<Blogs />} />
+          <Route path="/blog/:blogId" element={<BlogDetails />} />
+          <Route path="/blog/:blogId/update" element={<UpdateBlog />} />
           <Route element={<ProtectedRoute isAllowed={!!user} />}>
             <Route path="home" element={<Home />} />
             <Route path="dashboard" element={<Dashboard />} />

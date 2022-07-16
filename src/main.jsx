@@ -6,7 +6,10 @@ import { Provider } from "react-redux";
 import App from "./App";
 import PostContextProvider from "./context/PostContext";
 import UserContextProvider from "./context/UserContext";
+import { fetchPosts } from "./store/features/postsSlice";
 import store from "./store/store";
+
+store.dispatch(fetchPosts());
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
