@@ -5,6 +5,8 @@ const blogSchema = new mongoose.Schema({
     type: String,
   },
   genre: [String],
+  description: String,
+  author: String,
 });
 
 // TODO: Instance method

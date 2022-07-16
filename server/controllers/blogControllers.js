@@ -4,10 +4,7 @@ import Blog from "../models/Blog.js";
 // TODO: Create Blog
 export const addBlog = asyncHandler(async (req, res) => {
   console.log(req.body.genre);
-  const blog = new Blog({
-    title: req.body.title,
-    genre: req.body.genre,
-  });
+  const blog = new Blog(req.body);
 
   await blog.save();
 
@@ -35,14 +32,25 @@ export const getBlog = asyncHandler(async (req, res) => {
 
 // ? Update Blog
 export const updateBlog = asyncHandler(async (req, res) => {
-  res.json("update data");
+  console.log("Hit the route ", req.body);
+  const dt = await Blog.findOneAndUpdate(
+    {
+      _id: req.params.blogId,
+    },
+    {
+      $set: req.body,
+    },
+    {
+      new: true,
+    }
+  );
+  res.json(dt);
 });
 
 // !Delete Blog
 export const deleteBlog = asyncHandler(async (req, res) => {
-  const dt = await Blog.remove();
-  res.json({
-    message: "delete all",
-    data: dt,
-  });
+  const dt = await Blog.findByIdAndDelete(req.params.blogId);
+
+  console.log({ dt });
+  res.json(dt);
 });
