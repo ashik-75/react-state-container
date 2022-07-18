@@ -12,6 +12,7 @@ import UpdateBlog from "./pages/BlogsPage/UpdateBlog";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import Posts from "./pages/PostsPage/Posts";
 
 const client = new QueryClient();
 
@@ -50,6 +51,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route path="/posts" element={<Posts />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

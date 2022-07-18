@@ -1,7 +1,7 @@
 import "bootstrap/dist/js/bootstrap.js";
 import "bootswatch/dist/lux/bootstrap.min.css";
-import React from "react";
 import ReactDOM from "react-dom/client";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
 import App from "./App";
 import PostContextProvider from "./context/PostContext";
@@ -11,8 +11,16 @@ import store from "./store/store";
 
 store.dispatch(fetchPosts());
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: 1000 * 60 * 60 * 24,
+    },
+  },
+});
+
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <QueryClientProvider client={queryClient}>
     <Provider store={store}>
       <UserContextProvider>
         <PostContextProvider>
@@ -20,5 +28,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </PostContextProvider>
       </UserContextProvider>
     </Provider>
-  </React.StrictMode>
+  </QueryClientProvider>
 );

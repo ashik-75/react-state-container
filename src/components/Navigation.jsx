@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
@@ -31,8 +31,8 @@ const Navigation = ({ setUser }) => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/home"}>
-                <span className="nav-link">Home</span>
+              <Link to={"/posts"}>
+                <span className="nav-link">Posts</span>
               </Link>
             </li>
             <li className="nav-item">
